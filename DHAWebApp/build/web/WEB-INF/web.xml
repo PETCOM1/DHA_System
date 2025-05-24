@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>CapturerDetailsServlet</servlet-name>
+        <servlet-class>controllers.CapturerDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CaptureID</servlet-name>
+        <servlet-class>controllers.CaptureID</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SessionEndingServlet</servlet-name>
+        <servlet-class>controllers.SessionEndingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controllers.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAllIDs</servlet-name>
+        <servlet-class>controllers.ViewAllIDs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TotalOfSpecific</servlet-name>
+        <servlet-class>controllers.TotalOfSpecific</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CapturerDetailsServlet</servlet-name>
+        <url-pattern>/CapturerDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CaptureID</servlet-name>
+        <url-pattern>/CaptureID</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SessionEndingServlet</servlet-name>
+        <url-pattern>/SessionEndingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllIDs</servlet-name>
+        <url-pattern>/ViewAllIDs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TotalOfSpecific</servlet-name>
+        <url-pattern>/TotalOfSpecific</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <security-constraint>
+        <display-name>normal user_constraints</display-name>
+        <web-resource-collection>
+            <web-resource-name>normal user resources</web-resource-name>
+            <description>all resources used by the normal user </description>
+            <url-pattern>/capturer_menu_c.jsp</url-pattern>
+            <url-pattern>/count_for_specific_outcome_c.jsp</url-pattern>
+            <url-pattern>/invalid_id_outcome_c.jsp</url-pattern>
+            <url-pattern>/single_capture_outcome_c.jsp</url-pattern>
+            <url-pattern>/start_capturing_c.jsp</url-pattern>
+            <url-pattern>/CaptureID</url-pattern>
+            <url-pattern>/CapturerDetailsServlet</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>normal_user</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>super_user constriants</display-name>
+        <web-resource-collection>
+            <web-resource-name>super user resources</web-resource-name>
+            <description>resources accesed only by the super user</description>
+            <url-pattern>/get_total_ids_m.jsp</url-pattern>
+            <url-pattern>/manager_menu_m.jsp</url-pattern>
+            <url-pattern>/view_all_ids_outcome_m.jsp</url-pattern>
+            <url-pattern>/TotalOfSpecific</url-pattern>
+            <url-pattern>/ViewAllIDs</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>super_user</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>DHAFRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login_page.jsp</form-login-page>
+            <form-error-page>/error_page.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>Data Capturer </description>
+        <role-name>normal_user</role-name>
+    </security-role>
+    <security-role>
+        <description>super user role
+</description>
+        <role-name>super_user</role-name>
+    </security-role>
+</web-app>
